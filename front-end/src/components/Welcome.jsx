@@ -1,19 +1,19 @@
-import React from 'react'
-import styled from 'styled-components'
-// import {Link, Navigate} from 'react-router-dom'
-// import {useNavigate} from 'react-router-dom'
-
+import React from "react";
+import styled from "styled-components";
+//import {Link, Navigate} from 'react-router-dom'
+ import {useNavigate} from 'react-router-dom'
+//import { Navigate } from "react-router-dom";
 // import * as React from 'react';
 import {
   createTheme,
   ThemeProvider,
   alpha,
   getContrastRatio,
-} from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import { Box, Stack } from '@mui/system';
-import { ThemeProvider as Theme, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+} from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import { Box, Stack } from "@mui/system";
+import { ThemeProvider as Theme, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 //import { unstable_HistoryRouter } from 'react-router-dom';
 
 // Augment the palette to include a violet color
@@ -32,9 +32,9 @@ theme = createTheme(theme, {
   palette: {
     salmon: theme.palette.augmentColor({
       color: {
-        main: '#FF5733',
+        main: "#FF5733",
       },
-      name: 'salmon',
+      name: "salmon",
     }),
   },
 });
@@ -65,66 +65,75 @@ theme = createTheme(theme, {
 //   );
 // }
 
-
-
 const Welcome = () => {
+  const navigate = useNavigate()
+  const handleClick = ()=>{
+    navigate("/booknow");
+  }
   return (
     <Welcome_container>
-        <div className='Message'>
-            <h2>Welcome to Nit Kkr Guest Room Bookings.</h2>
-            <p>Discover the  convenience and ease of booking guest rooms on campus through our platform.We strive to make your booking experience seamless and stressfree.</p>
-            <div className='primary'>
-            <Theme theme={theme}> 
-            <Button variant="contained" color="salmon">
-                BOOK NOW
-              </Button>
-              </Theme>
-            </div>
+      <div className="Message">
+        <h2>Welcome to Nit Kkr Guest Room Bookings.</h2>
+        <p>
+          Discover the convenience and ease of booking guest rooms on campus
+          through our platform.We strive to make your booking experience
+          seamless and stressfree.
+        </p>
+        <div className="primary">
+          <Theme theme={theme}>
+            <Button
+              onClick={handleClick}
+              variant="contained"
+              color="salmon"
+            >
+              BOOK NOW
+            </Button>
+          </Theme>
         </div>
+      </div>
     </Welcome_container>
-  )
-}
+  );
+};
 
-export default Welcome
+export default Welcome;
 const Welcome_container = styled.div`
-   height:455px;
-   width:100%;
-   display: flex;
-   justify-content: space-between;
-   background-image: url('/images/Group-9.jpg');
-   background-repeat: no-repeat;
-   background-size: 100vw;
-   background-position-y:72px;
-   margin-bottom: 30px;
-   border-bottom: 1px solid black;
-   .Message{
-      width:45vw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding:3vw 2vw;
-      color:#ffff;
-      position: relative;
-      top: 3vw;
-      .primary{
-       // display: flex;
-       // justify-content: center;
-        margin-top: 1.5vw;
-      }
-      /* button{  
+  height: 455px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-image: url("/images/Group-9.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  background-position-y: 72px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid black;
+  .Message {
+    width: 45vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3vw 2vw;
+    color: #ffff;
+    position: relative;
+    top: 3vw;
+    .primary {
+      // display: flex;
+      // justify-content: center;
+      margin-top: 1.5vw;
+    }
+    /* button{  
         background-color: #ff5208;
         border: none;
         padding:10px 20px;
         border-radius: 5px;
         color: #ffff;
       } */
-      h2{
-        font-size: 3vw;
-        font-weight: 500;
-      }
-        p{
-          line-height: 1.5vw;
-        }
-   }
+    h2 {
+      font-size: 3vw;
+      font-weight: 500;
+    }
+    p {
+      line-height: 1.5vw;
+    }
+  }
 `;
-

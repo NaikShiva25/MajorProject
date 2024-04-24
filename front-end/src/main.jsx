@@ -11,6 +11,7 @@ import Layout from './components/Layout.jsx';
 import Login from './components/Login.jsx'
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
+import Booknow from './components/Booknow.jsx';
 import App from './App.jsx'
 
 const router=createBrowserRouter(
@@ -19,6 +20,7 @@ const router=createBrowserRouter(
         <Route path='' element={<Home/>}/>
         <Route path='about' element={<About/>}/>
         <Route path='management_login' element={<Login/>}/>
+        <Route path='booknow' element={<Booknow/>}/>
     </Route>
   )
 )

@@ -5,12 +5,13 @@ import Booknow from '../components/Booknow.jsx'
 const About = () => {
   return (
     <Container>
-    <Booknow/>
+       
     </Container>
   )
 }
 
 export default About
 const Container = styled.div`
+   min-height:75.2vh;
     width: 100%;
 `;
