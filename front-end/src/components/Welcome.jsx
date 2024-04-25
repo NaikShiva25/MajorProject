@@ -97,14 +97,14 @@ const Welcome = () => {
 
 export default Welcome;
 const Welcome_container = styled.div`
-  height: 455px;
+  height: 400px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   background-image: url("/images/Group-9.jpg");
   background-repeat: no-repeat;
   background-size: 100vw;
-  background-position-y: 72px;
+ // background-position-y: 72px;
   margin-bottom: 30px;
   border-bottom: 1px solid black;
   .Message {
