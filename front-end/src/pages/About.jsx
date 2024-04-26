@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import Booknow from '../components/Booknow.jsx'
+import ManagementConsole from '../components/ManagementConsole'
 
 const About = () => {
   return (
     <Container>
-       
+       <ManagementConsole/>
     </Container>
   )
 }
