@@ -107,7 +107,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
 const managementAllBookings = asyncHandler(async (req, res) => {
   try {
-    const { fromDate, toDate, studentId } = req.body;
+    const { fromDate, toDate, rollno } = req.body;
 
     let query = {};
 
@@ -119,8 +119,8 @@ const managementAllBookings = asyncHandler(async (req, res) => {
       query.toDate = { $lte: new Date(toDate) };
     }
     // Add studentId to the query if provided
-    if (studentId) {
-      query.studentId = studentId;
+    if (rollno) {
+      query.rollno = rollno;
     }
     const accommodations = await Accomodation.find(query);
     res.json(accommodations);

@@ -6,7 +6,7 @@ import { Accomodation } from "../models/Guest.model.js";
 
 const BookAccomodation = asyncHandler(async (req, res, next) => {
   try {
-    const { fromDate, toDate, noOfRoomsRequired, studentId } = req.body;
+    const { fromDate, toDate, noOfRoomsRequired, rollno ,name,student,street,city,pin,state,mobileno} = req.body;
     const endDate = new Date(toDate);
     const currentDate = new Date(fromDate);
     if (currentDate > endDate) {
@@ -53,10 +53,18 @@ const BookAccomodation = asyncHandler(async (req, res, next) => {
       temp.setDate(temp.getDate() + 1);
     }
     const newAccomodation = new Accomodation({
+      name,
+      student,
+      rollno,
+      street,
+      city,
+      pin,
+      state,
+      mobileno,
       fromDate: currentDate,
       toDate: endDate,
       noOfRoomsRequired,
-      studentId,
+      
     });
 
     await newAccomodation.save();
