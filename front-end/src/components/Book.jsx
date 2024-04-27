@@ -604,17 +604,17 @@ const Book = () => {
     pin: "",
     state: "",
     mobileno: "",
-    rooms: "",
+    noOfRoomsRequired: Number,
     purpose: "",
-    arrival: "",
-    departure: "",
+    fromDate: Date,
+    toDate: Date,
     studentId: "",
     aadharId: "",
     check: false,
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
+
 
   useEffect(() => {
     setFormErrors(validate(details));
@@ -656,14 +656,14 @@ const Book = () => {
     if (!values.mobileno) {
       errors.mobileno = "Mobile No is Required";
     }
-    if (!values.rooms) {
-      errors.rooms = "Rooms Required field is Required";
+    if (!values.noOfRoomsRequired) {
+      errors.noOfRoomsRequired = "Rooms Required field is Required";
     }
-    if (!values.arrival) {
-      errors.arrival = "Arrival Date is Required";
+    if (!values.fromDate) {
+      errors.fromDate = "Arrival Date is Required";
     }
-    if (!values.departure) {
-      errors.departure = "Departure Date is Required";
+    if (!values.toDate) {
+      errors.toDate = "Departure Date is Required";
     }
     return errors;
   };
@@ -746,15 +746,15 @@ const Book = () => {
           helperText={formErrors.mobileno}
         />
         <TextField
-          name="rooms"
+          name="noOfRoomsRequired"
           label="Rooms Required"
           variant="outlined"
           size="small"
           type="number"
-          value={details.rooms}
+          value={details.noOfRoomsRequired}
           onChange={handleChange}
-          error={!!formErrors.rooms}
-          helperText={formErrors.rooms}
+          error={!!formErrors.noOfRoomsRequired}
+          helperText={formErrors.noOfRoomsRequired}
         />
         <TextField
           name="purpose"
@@ -768,27 +768,27 @@ const Book = () => {
           <DateField>
             <DateLabel>Arrival Date</DateLabel>
             <TextField
-              name="arrival"
+              name="fromDate"
               type="date"
               variant="outlined"
               size="small"
-              value={details.arrival}
+              value={details.fromDate}
               onChange={handleChange}
-              error={!!formErrors.arrival}
-              helperText={formErrors.arrival}
+              error={!!formErrors.fromDate}
+              helperText={formErrors.fromDate}
             />
           </DateField>
           <DateField>
             <DateLabel>Departure Date</DateLabel>
             <TextField
-              name="departure"
+              name="toDate"
               type="date"
               variant="outlined"
               size="small"
-              value={details.departure}
+              value={details.toDate}
               onChange={handleChange}
-              error={!!formErrors.departure}
-              helperText={formErrors.departure}
+              error={!!formErrors.toDate}
+              helperText={formErrors.toDate}
             />
           </DateField>
         </DateFields>
