@@ -18,6 +18,33 @@ const generateAccessTokenandRefreshToken = async (userID) => {
     throw new ApiError(500, "something went wrong during generation tokens");
   }
 };
+const createUser = asyncHandler(async (req, res) => {
+  const { username, password } = req.body;
+  if ([username, password].some((field) => field?.trim() === "")) {
+    throw new ApiError(400, "All fields are required");
+  }
+  const existedUser = await ManagementUser.findOne({ username });
+  if (existedUser) {
+    throw new ApiError(409, "User with username already exists");
+  }
+
+  const user = await ManagementUser.create({
+    password,
+    username: username.toLowerCase(),
+  });
+
+  const createdUser = await ManagementUser.findById(user._id).select(
+    "-password -refreshToken"
+  );
+
+  if (!createdUser) {
+    throw new ApiError(500, "Something went wrong while registering the user");
+  }
+  return res
+    .status(201)
+    .json(new ApiResponse(200, createdUser, "User registered Successfully"));
+});
+
 const loginUser = asyncHandler(async (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -30,7 +57,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
 
   const isPasswordValid = await user.isPasswordCorrect(password);
 
-  if (isPasswordValid == false) {
+  if (!isPasswordValid) {
     throw new ApiError(401, "Password Incorrect");
   }
   const { accessToken, refreshToken } =
@@ -44,7 +71,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
     secure: true,
   };
   // const result = new ApiResponse(200,{},"User logged in succesfully");
-  res
+  return res
     .status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
@@ -77,6 +104,7 @@ const logoutUser = asyncHandler(async (req, res, next) => {
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
   const token = req.cookies.refreshToken;
+  console.log(token)
   if (!token) {
     throw new ApiError(401, "unauthorized request");
   }
@@ -87,7 +115,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     throw new ApiError(401, "Invalid refresh Token");
   }
 
-  if (token !== user.refreshToken) {
+  if (token !== user?.refreshToken) {
     throw new ApiError(401, "tocken expired or used");
   }
   const options = {
@@ -129,4 +157,10 @@ const managementAllBookings = asyncHandler(async (req, res) => {
   }
 });
 
-export { loginUser, logoutUser, refreshAccessToken, managementAllBookings };
+export {
+  loginUser,
+  logoutUser,
+  refreshAccessToken,
+  managementAllBookings,
+  createUser,
+};
