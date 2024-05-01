@@ -5,13 +5,13 @@ import ManagementConsole from '../components/ManagementConsole'
 const About = () => {
   return (
     <Container>
-       <ManagementConsole/>
+       
     </Container>
   )
 }
 
 export default About
 const Container = styled.div`
-   min-height:75.2vh;
+   min-height:63.3vh;
     width: 100%;
 `;

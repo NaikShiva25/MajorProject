@@ -12,6 +12,7 @@ import Login from './components/Login.jsx'
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import Book from './components/Book.jsx';
+import ManagementConsole from './components/ManagementConsole.jsx';
 
 
 const router=createBrowserRouter(
@@ -21,6 +22,7 @@ const router=createBrowserRouter(
         <Route path='about' element={<About/>}/>
         <Route path='management_login' element={<Login/>}/>
         <Route path='booknow' element={<Book/>}/>
+        <Route path='dashboard' element={<ManagementConsole/>}/>
     </Route>
   )
 )

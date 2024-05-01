@@ -104,7 +104,7 @@ export default ManagementConsole;
 
 const Container = styled.div`
     padding: 20px;
-   
+    min-height: 63.3vh;
  
   .searchbar {
     padding-bottom: 20px;
