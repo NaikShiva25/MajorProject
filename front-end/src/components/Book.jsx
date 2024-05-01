@@ -614,7 +614,7 @@ const Book = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   useEffect(() => {
     setFormErrors(validate(details));
@@ -633,14 +633,35 @@ const Book = () => {
     e.preventDefault();
     setFormErrors(validate(details));
     setIsSubmit(true);
+    
+  
   };
 
   useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
+    if (Object.keys(formErrors).length === 0 && isSubmit && !formSubmitted) {
       console.log("Form submitted:", details);
-      // You can add further actions here, such as sending data to a server
+      const fetchData = async () => {
+        try {
+          const response = await fetch("http://localhost:8000/book/book-accomodation", {
+            method: "POST",
+            body: JSON.stringify(details),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          });
+  
+          const json = await response.json();
+         // console.log(json);
+          setFormSubmitted(true);
+         
+        } catch (error) {
+           console.log(error);
+        }
+      };
+      fetchData();
     }
-  }, [formErrors, isSubmit, details]);
+  }, [formErrors, isSubmit,details, formSubmitted]);
+
 
   const validate = (values) => {
     const errors = {};

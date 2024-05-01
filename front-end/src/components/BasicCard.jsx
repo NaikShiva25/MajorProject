@@ -30,8 +30,8 @@ export default function BasicCard({request}) {
           Student Roll No :- {request.rollno}
         </Typography>
         <Typography variant="body2">
-          Arrival :- {(request.fromDate).toString()}    <br />
-          Departure :- {request.toDate}
+          Arrival :- {(request.fromDate).toString().substr(0,10)}    <br />
+          Departure :- {request.toDate.toString().substr(0,10)}
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
              Rooms Required :- {request.noOfRoomsRequired}
