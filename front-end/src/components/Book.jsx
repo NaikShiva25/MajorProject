@@ -630,7 +630,7 @@ const Book = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+   e.preventDefault();
     setFormErrors(validate(details));
     setIsSubmit(true);
     
@@ -666,26 +666,37 @@ const Book = () => {
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
-      errors.name = "Guest Name is Required";
+      errors.name = "Guest Name is Required.";
     }
     if (!values.student) {
-      errors.student = "Student Name is Required";
+      errors.student = "Student Name is Required.";
     }
     if (!values.rollno) {
-      errors.rollno = "Student Roll No is Required";
+      errors.rollno = "Student Roll No is Required.";
     }
     if (!values.mobileno) {
-      errors.mobileno = "Mobile No is Required";
+      errors.mobileno = "Mobile No is Required.";
     }
     if (!values.noOfRoomsRequired) {
-      errors.noOfRoomsRequired = "Rooms Required field is Required";
+      errors.noOfRoomsRequired = "Rooms Required field is Required.";
     }
     if (!values.fromDate) {
-      errors.fromDate = "Arrival Date is Required";
+      errors.fromDate = "Arrival Date is Required.";
     }
     if (!values.toDate) {
-      errors.toDate = "Departure Date is Required";
+      errors.toDate = "Departure Date is Required.";
     }
+    const regex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    const phone = values.mobileno.match(regex);
+    if(!phone){
+      errors.mobileno = "Enter Valid MobileNo.";
+    }
+    const regexp = /^\d{8}$/;
+    const valid = values.rollno.match(regexp);
+    if(!valid){
+      errors.rollno = "Enter Valid student Roll No."
+    }
+    
     return errors;
   };
 

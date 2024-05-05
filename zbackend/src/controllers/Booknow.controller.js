@@ -61,8 +61,8 @@ const BookAccomodation = asyncHandler(async (req, res, next) => {
       pin,
       state,
       mobileno,
-      fromDate: currentDate,
-      toDate: endDate,
+      fromDate: fromDate,
+      toDate: toDate,
       noOfRoomsRequired,
       
     });

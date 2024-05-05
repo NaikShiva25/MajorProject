@@ -51,16 +51,7 @@ const ManagementConsole = () => {
     fetchData();
   };
     console.log(data);
-  if (error) return <div>{error}</div>;
-
-
-
-
-
-  
-  
-
-    
+  if (error) return <div>{error}</div>;  
   return (
     <Container>
       <Heading>Find By:-</Heading>
@@ -174,7 +165,8 @@ class PDFGenerator extends React.Component {
         });
 
       const tableRows = tableData.map(item => tableColumns.map(col => item[col.dataKey]));
-
+      doc.text('Guest House Bookings Report, NIT Kurukshetra', 100, 10);
+      
       doc.autoTable({
         columns: tableColumns,
         body: tableRows,
