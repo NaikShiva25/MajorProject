@@ -28,11 +28,15 @@ const ManagementConsole = () => {
 
     const fetchData = async () => {
       try {
+        
+
         const response = await fetch("http://localhost:8000/api/all-bookings", {
           method: "POST",
           body: JSON.stringify(filters),
           headers: {
             "Content-type": "application/json; charset=UTF-8",
+             "refreshToken":localStorage.getItem("refreshToken"),
+             "accessToken":localStorage.getItem("accessToken"),
           },
         });
 

@@ -30,7 +30,8 @@ const LoginForm = () => {
           },
         });
         const json = await response.json();
-      
+        localStorage.setItem("accessToken" ,json["data"]["accessToken"]);
+        localStorage.setItem("refreshToken" ,json["data"]["refreshToken"]);
         if (!json.success) {
           setError(json.message);
         } else if (json.success) {

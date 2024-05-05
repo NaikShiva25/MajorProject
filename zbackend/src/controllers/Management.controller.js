@@ -75,7 +75,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
     .status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
-    .json(new ApiResponse(200, loggedUser, "Userlogged in succesfully"));
+    .json(new ApiResponse(200, {loggedUser,accessToken,refreshToken}, "Userlogged in succesfully"));
 });
 const logoutUser = asyncHandler(async (req, res, next) => {
   //clear cookies
@@ -118,10 +118,10 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   if (token !== user?.refreshToken) {
     throw new ApiError(401, "tocken expired or used");
   }
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
+   const options = {
+     httpOnly: true,
+     secure: true,
+   };
 
   const { accessToken, newrefreshToken } = generateAccessTokenandRefreshToken(
     user._id

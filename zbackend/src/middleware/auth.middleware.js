@@ -7,7 +7,8 @@ import { ManagementUser } from "../models/ManagementUser.model.js";
 
 export const verifyJWT = asyncHandler(async(req,_,next)=>{
      try {
-        const token = req.cookies?.accessToken;
+        const token = req.headers?.accesstoken;
+        console.log(token);
         if(!token){
            throw new ApiError(401,"unathorized Token")
         }

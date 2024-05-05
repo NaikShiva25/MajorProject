@@ -6,7 +6,7 @@ router.post('/createuser',createUser)
 router.post('/login',loginUser);
 router.post('/logout',verifyJWT,logoutUser)
 router.post('/refreshaccesstoken',refreshAccessToken);
-router.post('/all-bookings',managementAllBookings);//post..?
+router.post('/all-bookings',verifyJWT,managementAllBookings);//post..?
 
 
 
