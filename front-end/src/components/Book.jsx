@@ -615,6 +615,7 @@ const Book = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [response , setResponse] = useState(false);
 
   useEffect(() => {
     setFormErrors(validate(details));
@@ -651,7 +652,9 @@ const Book = () => {
           });
   
           const json = await response.json();
-         // console.log(json);
+          if(!json.success){
+                  setResponse(true);
+          }
           setFormSubmitted(true);
          
         } catch (error) {
@@ -700,7 +703,7 @@ const Book = () => {
     return errors;
   };
 
-  return (
+  return ( !formSubmitted?(
     <Container>
       <Heading>Book a Room</Heading>
       <Form onSubmit={handleSubmit}>
@@ -864,10 +867,24 @@ const Book = () => {
           Submit
         </SubmitButton>
       </Form>
-    </Container>
+    </Container>) : response?<Style>Please Enter Valid Details Refresh The Page And Try Again.</Style>:<Style>Thank you for booking! Your request has been submitted.</Style>
   );
 };
-
+const Style = styled.div`
+  min-height: 63.3vh;
+  max-width: 500px;
+  margin: 0 auto ;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+      font-size: 18px; /* Adjust font size as needed */
+    color: #333; /* Text color */
+   font-family: Arial, sans-serif; /* Font family */
+    
+    
+`;
 const Container = styled.div`
  min-height: auto;
   max-width: 500px;
