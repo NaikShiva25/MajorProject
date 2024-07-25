@@ -17,7 +17,7 @@ app.use(cors({
 //to allow express to read input json data and limit it
 app.use(express.json({limit: "16kb"}))
 //to read data from url
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: true }))
 //to store files in server temporarly
 app.use(express.static("public"));
 app.use(cookieParser())
