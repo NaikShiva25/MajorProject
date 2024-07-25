@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon  -r dotenv/config --experimental-json-modules src/index.js",
+    "dev": "node  -r dotenv/config --experimental-json-modules src/index.js",
     "format": "prettier --loglevel warn --write \"{routes}/**/*.{jsx,js}\""
   },
   "keywords": [],
