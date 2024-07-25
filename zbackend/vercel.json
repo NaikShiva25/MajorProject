@@ -3,14 +3,14 @@
     "name": "Guest Room Bookings server",
     "builds": [
       {
-        "src": "*.js",
+        "src": "src/index.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/"
+        "dest": "src/index.js"
       }
     ]
   }
