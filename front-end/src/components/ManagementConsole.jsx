@@ -28,9 +28,7 @@ const ManagementConsole = () => {
 
     const fetchData = async () => {
       try {
-        
-
-        const response = await fetch("http://localhost:8000/api/all-bookings", {
+        const response = await fetch("https://major-project-delta-dusky.vercel.app/api/all-bookings", {
           method: "POST",
           body: JSON.stringify(filters),
           headers: {

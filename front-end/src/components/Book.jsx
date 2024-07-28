@@ -594,6 +594,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 
+
 const Book = () => {
   const [details, setDetails] = useState({
     name: "",
@@ -643,7 +644,7 @@ const Book = () => {
       console.log("Form submitted:", details);
       const fetchData = async () => {
         try {
-          const response = await fetch("http://localhost:8000/book/book-accomodation", {
+          const response = await fetch("https://major-project-delta-dusky.vercel.app/book/book-accomodation", {
             method: "POST",
             body: JSON.stringify(details),
             headers: {
